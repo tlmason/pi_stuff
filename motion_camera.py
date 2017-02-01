@@ -2,7 +2,7 @@
 import time
 import RPi.GPIO as GPIO
 import picamera
-import os, inspect
+import os, inspect, zipfile, sys
 import gmail_attachment # Personal implementation of python_3_email_with_attachment
 
 """
