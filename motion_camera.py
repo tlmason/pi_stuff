@@ -68,6 +68,8 @@ try:
         # If it's triggered, take one photo a second for 5 seconds.
         while current == 1 and previous == 1:
             take_photos(camera)
+            current = 0
+            previous = 0
             
         # wait for 10 ms between motion sensor polling
         time.sleep(0.01)
