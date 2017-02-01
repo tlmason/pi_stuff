@@ -2,7 +2,7 @@
 import time
 import RPi.GPIO as GPIO
 import picamera
-import os
+import os, inspect
 import gmail_attachment # Personal implementation of python_3_email_with_attachment
 
 """
@@ -26,9 +26,9 @@ GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
 
 # Create folder to store photos
-foldername = time.strftime('%Y%m%d') # Create a folder for the day
-if not os.path.exists(foldername):
-    os.makedirs(foldername)
+folder_name = time.strftime('%Y%m%d') # Create a folder for the day
+if not os.path.exists(folder_name):
+    os.makedirs(folder_name)
     
 ### Step 1: Set up the camera ###
 camera = picamera.PiCamera()
@@ -45,8 +45,8 @@ previous = 0
 def take_photos(cam):
     i = 0
     while i < 5:
-        filename = foldername+"/"+time.strftime('%Y%m%d %H%M%S')+".jpg"
-        cam.capture(filename)
+        file_name = folder_name+"/"+time.strftime('%Y%m%d %H%M%S')+".jpg"
+        cam.capture(file_name)
         print("Photo "+str(i))
         i+=1
         time.sleep(1.0)
@@ -78,6 +78,7 @@ try:
 except:
     # When Ctrl-C pressed, send photos, cleanup GPIO
     GPIO.cleanup()
-    send_photos_box(foldername)
+    folder_path = os.path.dirname(inspect.getfile(inspect.currentframe()))+folder_name
+    send_photos_box(folder_path)
 
 
