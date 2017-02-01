@@ -47,6 +47,8 @@ def take_photos(cam):
     while i < 5:
         filename = foldername+"/"+time.strftime('%Y%m%d %H%M%S')+".jpg"
         cam.capture(filename)
+        print("Photo "+i)
+        i+=1
         time.sleep(1.0)
 
 def send_photos_box(folder):
@@ -60,14 +62,14 @@ try:
         # Decide if the detector was triggered.
         if current == 1 and previous == 0:
             # The motion detector has been triggered!
+            print("motion")
+            take_photos(camera)
             previous = current
         elif current == 0 and previous == 1:
-            # The motion detector is reset. 
+            # The motion detector is reset.
+            print("reset")
             previous = current
-
-        # If it's triggered, take one photo a second for 5 seconds.
-        while current == 1 and previous == 1:
-            take_photos(camera)
+        else: # I seem to have a problem with not stopping motion detected state.
             current = 0
             previous = 0
             
