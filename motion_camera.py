@@ -40,6 +40,18 @@ GPIO.setup(pirmd, GPIO.IN)
 
 current = 0
 previous = 0
+
+# functions here
+def take_photos(cam):
+    i = 0
+    while i < 5:
+        filename = foldername+time.strftime('%Y%m%d %H%M%S')+".jpg"
+        cam.capture(filename)
+        time.sleep(1.0)
+
+def send_photos_box(folder):
+    gmail_attachment.main(folder)
+
 try: 
     # Loop Forever (Ctrl-c quits)
     while True:
@@ -63,17 +75,5 @@ except:
     # When Ctrl-C pressed, send photos, cleanup GPIO
     GPIO.cleanup()
     send_photos_box(foldername)
-    
-### Step 3: Take Photos ###
 
-def take_photos(cam):
-    i = 0
-    while i < 5:
-        filename = foldername+time.strftime('%Y%m%d %H%M%S')+".jpg"
-        cam.capture(filename)
-        time.sleep(1.0)
 
-### Step 4: Email them to Box ###
-
-def send_photos_box(folder):
-    gmail_attachment.main(folder)
