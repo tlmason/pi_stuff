@@ -50,7 +50,7 @@ def take_photos(cam):
         time.sleep(1.0)
 
 def send_photos_box(folder):
-    gmail_attachment.main(folder)
+    gmail_attachment.start_sending(folder)
 
 try: 
     # Loop Forever (Ctrl-c quits)
