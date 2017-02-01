@@ -78,7 +78,7 @@ try:
 except:
     # When Ctrl-C pressed, send photos, cleanup GPIO
     GPIO.cleanup()
-    folder_path = os.path.dirname(inspect.getfile(inspect.currentframe()))+folder_name
+    folder_path = os.path.dirname(inspect.getfile(inspect.currentframe()))+"/"+folder_name
     send_photos_box(folder_path)
 
 
