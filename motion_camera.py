@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+
 import time
 import RPi.GPIO as GPIO
 import picamera
@@ -19,7 +20,6 @@ import gmail_attachment # Personal implementation of python_3_email_with_attachm
     
 """
 
-
 ### Step 0: Initialize
 
 # Initialize GPIO
@@ -31,7 +31,7 @@ folder_name = time.strftime('%Y%m%d') # Create a folder for the day
 if not os.path.exists(folder_name):
     os.makedirs(folder_name)
     
-### Step 1: Set up the camera ###
+### Step 1: # Set up the camera ###
 camera = picamera.PiCamera()
 
 ### Step 2: Detect Motion ###
