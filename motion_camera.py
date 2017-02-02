@@ -30,7 +30,9 @@ GPIO.setwarnings(False)
 folder_name = time.strftime('%Y%m%d') # Create a folder for the day
 if not os.path.exists(folder_name):
     os.makedirs(folder_name)
-    
+
+folder_path = 
+
 ### Step 1: # Set up the camera ###
 camera = picamera.PiCamera()
 
