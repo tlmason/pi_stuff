@@ -44,6 +44,8 @@ GPIO.setup(pirmd, GPIO.IN)
 current = 0
 previous = 0
 
+time.sleep(10800)
+
 # functions here
 def take_photos(cam, path):
     current_file = time.strftime('%Y%m%d-%H%M%S')+".jpg"
