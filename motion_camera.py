@@ -45,7 +45,7 @@ previous = 0
 def take_photos(cam):
     i = 0
     while i < 5:
-        file_name = folder_name+"/"+time.strftime('%Y%m%d %H%M%S')+".jpg"
+        file_name = folder_name+"/"+time.strftime('%Y%m%d-%H%M%S')+".jpg"
         cam.capture(file_name)
         print("Photo "+str(i))
         i+=1
