@@ -50,7 +50,6 @@ def take_photos(cam):
         cam.capture(file_name)
         i+=1
         time.sleep(1.0)
-    return i + 1
 
 def send_photos_box(folder):
     gmail_attachment.start_sending(folder)
@@ -63,7 +62,7 @@ try:
         # Decide if the detector was triggered.
         if current == 1 and previous == 0:
             # The motion detector has been triggered!
-            totalPhotos = totalPhotos + take_photos(camera)
+            take_photos(camera)
             send_photos_box(folder_path)
             previous = current
         elif current == 0 and previous == 1:
