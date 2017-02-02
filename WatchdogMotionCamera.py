@@ -27,10 +27,7 @@ if not os.path.exists(folder_name):
 
 # Start watching this folder for new files.
 #### If there's a new file, send it to the box folder.
-
-# get full path to folder
 folder_path = os.path.dirname(inspect.getfile(inspect.currentframe()))+"/"+folder_name+"/"folder_path = 
-
 subprocess.Popen(["folder_monitor.sh "+folder_path])
 
 # Initialize GPIO
