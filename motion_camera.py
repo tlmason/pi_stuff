@@ -44,7 +44,7 @@ GPIO.setup(pirmd, GPIO.IN)
 current = 0
 previous = 0
 
-time.sleep(10800)
+time.sleep(5400)
 
 # functions here
 def take_photos(cam, path):
