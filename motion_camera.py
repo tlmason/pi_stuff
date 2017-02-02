@@ -31,7 +31,7 @@ folder_name = time.strftime('%Y%m%d') # Create a folder for the day
 if not os.path.exists(folder_name):
     os.makedirs(folder_name)
 
-folder_path = 
+folder_path = os.path.dirname(inspect.getfile(inspect.currentframe()))+"/"+folder_name+"/"
 
 ### Step 1: # Set up the camera ###
 camera = picamera.PiCamera()
@@ -45,13 +45,14 @@ current = 0
 previous = 0
 
 # functions here
-def take_photos(cam):
-    i = 0
-    while i < 5:
-        file_name = folder_name+"/"+time.strftime('%Y%m%d-%H%M%S')+".jpg"
-        cam.capture(file_name)
-        i+=1
-        time.sleep(1.0)
+def take_photos(cam, path):
+    current_file = time.strftime('%Y%m%d-%H%M%S')+".jpg"
+    file_name = folder_name+"/"+current_file
+    time.sleep(2)
+    cam.capture(file_name)
+    send_photos_box(path)
+    os.remove(path+"/"+current_file)
+    time.sleep(0.01)
 
 def send_photos_box(folder):
     gmail_attachment.start_sending(folder)
@@ -64,8 +65,7 @@ try:
         # Decide if the detector was triggered.
         if current == 1 and previous == 0:
             # The motion detector has been triggered!
-            take_photos(camera)
-            send_photos_box(folder_path)
+            take_photos(camera, folder_path)
             previous = current
         elif current == 0 and previous == 1:
             # The motion detector is reset.
