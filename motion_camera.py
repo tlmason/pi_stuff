@@ -48,9 +48,9 @@ def take_photos(cam):
     while i < 5:
         file_name = folder_name+"/"+time.strftime('%Y%m%d-%H%M%S')+".jpg"
         cam.capture(file_name)
-        print("Photo "+str(i))
         i+=1
         time.sleep(1.0)
+    return i + 1
 
 def send_photos_box(folder):
     gmail_attachment.start_sending(folder)
@@ -63,23 +63,17 @@ try:
         # Decide if the detector was triggered.
         if current == 1 and previous == 0:
             # The motion detector has been triggered!
-            print("motion")
-            take_photos(camera)
+            totalPhotos = totalPhotos + take_photos(camera)
+            send_photos_box(folder_path)
             previous = current
         elif current == 0 and previous == 1:
             # The motion detector is reset.
-            print("reset")
             previous = current
-        else: # I seem to have a problem with not stopping motion detected state.
-            current = 0
-            previous = 0
             
-        # wait for 10 ms between motion sensor polling
+        # wait for 10 ms between motion sensor polling when not taking or emailing photos
         time.sleep(0.01)
 except:
-    # When Ctrl-C pressed, send photos, cleanup GPIO
+    # When Ctrl-C pressed, cleanup GPIO
     GPIO.cleanup()
-    folder_path = os.path.dirname(inspect.getfile(inspect.currentframe()))+"/"+folder_name+"/"
-    send_photos_box(folder_path)
 
 
