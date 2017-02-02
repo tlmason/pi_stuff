@@ -75,9 +75,6 @@ try:
             # The motion detector is reset.
             print("reset")
             previous = current
-        else: # I seem to have a problem with not stopping motion detected state.
-            current = 0
-            previous = 0
             
         # wait for 10 ms between motion sensor polling
         time.sleep(0.01)
