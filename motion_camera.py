@@ -19,6 +19,7 @@ import gmail_attachment # Personal implementation of python_3_email_with_attachm
     
 """
 
+
 ### Step 0: Initialize
 
 # Initialize GPIO
